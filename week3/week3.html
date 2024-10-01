@@ -1,0 +1,299 @@
+//구조분해할당
+
+let arr = [1, 2, 3];
+let [one, two, three] = arr; ①
+
+console.log(one, two, three); // 1 2 3
+
+let person = { name: "이정환", age: 25, location: "경기도" };
+let { name, age, location } = person;
+console.log(name, age, location); // 이정환 25 경기도
+
+function func({ name: n, age: a, location: l }) {
+    console.log(n, a, l);
+}
+
+let person = {
+    name: "이정환",
+    age: 25,
+    location: "경기도"
+};
+
+func(person);
+
+// 이정환 25 경기도
+
+//스프레드 연산자, rest 매개변수
+
+let arrA = [1, 2, 3];
+let arrB = [...arrA, 4, 5, 6];
+console.log(arrB); // [1, 2, 3, 4, 5, 6]
+
+let objA = {
+    a: 1,
+    b: 2
+};
+
+let objB = {
+    ...objA,
+    c: 3,
+    d: 4
+};
+
+console.log(objB); // {a: 1, b: 2, c: 3, d: 4}
+
+function func(a, b, c) {
+    console.log(a, b, c);
+}
+
+let arr = [1, 2, 3];
+func(...arr); // 1 2 3
+
+function func(a, b, c) {
+    console.log(a, b, c);
+}
+
+let arr = [1, 2, 3];
+func(...arr); // 1 2 3
+
+//배열 메서드
+
+let food = ["짜장면", "피자", "치킨"];
+const newLength = food.push("탕수육"); ①
+console.log(food); // ["짜장면", "피자", "치킨", "탕수육"]
+console.log(`새로운 배열의 길이: ${newLength}`); // 새로운 배열의 길이: 4
+
+let food = ["짜장면", "피자", "치킨"];
+const removedItem = food.pop(); // ①
+console.log(removedItem); // 치킨
+console.log(food); // ["짜장면", "피자"]
+
+let food = ["짜장면", "피자", "치킨"];
+const removedItem = food.shift(); // ①
+console.log(removedItem); // "짜장면"
+console.log(food); // ["피자", "치킨"]
+
+let food = ["짜장면", "피자", "치킨"];
+const newLength = food.unshift("갈비찜"); // ①
+console.log(food); // ["갈비찜", "짜장면", "피자", "치킨"]
+console.log(`새로운 배열의 길이: ${newLength}`); // 새로운 배열의 길이: 4
+
+const arr = [1, 2, 3];
+const sliced = arr.slice(0, 2); // ①
+console.log(arr); // [1, 2, 3]
+console.log(sliced); // [1, 2]
+ 
+let arrA = [1, 2];
+let arrB = [3, 4];
+let arrC = arrA.concat(arrB); ① // 
+console.log(arrC);    // [1, 2, 3, 4]
+console.log(arrA); ② // [1, 2]
+
+function cb(item, idx) {// ②
+    console.log(`${idx}번째 요소: ${item}`);
+}
+const arr = [1, 2, 3];
+arr.forEach(cb); // ①
+
+// 0번째 요소: 1 
+// 1번째 요소: 2 
+// 2번째 요소: 3
+
+let arr = [1, 3, 5, 7, 1];
+
+console.log(arr.indexOf(1, 0)); ① // 0
+ 
+let arr = [1, 3, 5, 7, 1];
+
+console.log(arr.includes(3)); // true
+console.log(arr.includes("생선")); // false
+ 
+function determine(item, idx, arr) { ②
+    if (item % 2 === 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+let arr = [1, 3, 5, 6, 8];
+let index = arr.findIndex(determine); ①
+console.log(index); // 3
+ 
+let arr = [1, 3, 5, 6, 8];
+let index = arr.findIndex((item) =>
+    item % 2 === 0 ? true : false
+);
+console.log(index); // 3
+ 
+let arr = [
+    { name: "이종원" },
+    { name: "이정환" },
+    { name: "신다민" },
+    { name: "김효빈" }
+];
+let element = arr.find((item) => item.name === "이정환"); ①
+console.log(element); // {name: "이정환"}
+ 
+let arr = [
+    { name: "이종원", hobby: "축구" },
+    { name: "이정환", hobby: "영화" },
+    { name: "신다민", hobby: "축구" },
+    { name: "김효빈", hobby: "노래" }
+];
+let filteredArr = arr.filter(
+    (item) => item.hobby === "축구"
+);
+
+console.log(filteredArr);
+
+let arr = [1, 2, 3, 4];
+let newArr = arr.map((item) => item * 3); // ①
+console.log(newArr); // [3, 6, 9, 12]
+
+let arr = [
+    { name: "이종원", hobby: "축구" },
+    { name: "이정환", hobby: "영화" },
+    { name: "신다민", hobby: "축구" },
+    { name: "김효빈", hobby: "노래" }
+];
+
+let newArr = arr.map((item) => item.name);
+console.log(newArr);
+
+let arr = ["b", "a", "c"];
+arr.sort();
+console.log(arr); // ["a", "b", "c"]
+
+function compare(a, b) {
+    if (a > b) {
+        return 1;
+    } else if (a < b) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
+let arr = [10, 5, 3];
+arr.sort(compare);
+console.log(arr); // [3, 5, 10]
+
+let arr = ["안녕", "나는", "이정환"];
+console.log(arr.join()); // ① 안녕,나는,이정환
+console.log(arr.join("-")); // ② 안녕-나는-이정환
+ 
+let arr = [1, 2, 3, 4, 5];
+let result = arr.reduce((acc, item) => acc + item, 0);
+console.log(result); // 15
+
+//Date 객체
+
+let date = new Date();
+console.log(date);
+// 현재 날짜 및 시간
+
+let date1 = new Date("2000-10-10/00:00:00"); ①
+let date2 = new Date("2000.10.10/00:00:00"); ②
+let date3 = new Date("2000/10/10/00:00:00"); ③
+let date4 = new Date("2000 10 10/00:00:00"); ④
+
+console.log("1:", date1); // 1: Tue Oct 10 2000 00:00:00 GMT+0900 (한국 표준시)
+console.log("2:", date2); // 2: Tue Oct 10 2000 00:00:00 GMT+0900 (한국 표준시)
+console.log("3:", date3); // 3: Tue Oct 10 2000 00:00:00 GMT+0900 (한국 표준시)
+console.log("4:", date4); // 4: Tue Oct 10 2000 00:00:00 GMT+0900 (한국 표준시)
+
+let date1 = new Date(2000, 10, 10, 0, 0, 0, 0);
+let date2 = new Date(2000, 9, 10);
+
+console.log("1:", date1); // 1: Fri Nov 10 2000 00:00:00 GMT+0900 (한국 표준시)
+console.log("2:", date2); // 2: Tue Oct 10 2000 00:00:00 GMT+0900 (한국 표준시)
+
+let date = new Date(2000, 9, 10);
+let timeStamp = date.getTime(); // ①
+console.log(timeStamp); // 971103600000
+
+let dateClone = new Date(timeStamp); // ②
+console.log(dateClone); // Tue Oct 10 2000 00:00:00 GMT+0900 (한국 표준시)
+
+console.log(date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    date.getDay(),
+    date.getHours(),
+    date.getMinutes(),
+    date.getSeconds(), // 0
+    date.getMilliseconds()); // 0
+
+console.log(date.getFullYear(),
+    date.setMonth(),
+    date.setDate(),
+    date.setDay(),
+    date.setHours(),
+    date.setMinutes(),
+    date.setSeconds(), // 0
+    date.setMilliseconds()); // 0
+
+console.log(today.toString(),
+    today.toDateString(),        // Tue Oct 10 2000
+    today.toLocaleString(),       // 2000. 10. 10. 오후 10:00:00
+    today.toLocaleDateString());
+
+
+//비동기처리
+
+function orderCoffee(coffee, time) { ①
+    setTimeout(() => {
+        console.log(`${coffee} 제조 완료`);
+    }, time);
+}
+
+orderCoffee("달콤한 커피", 4000);
+orderCoffee("레몬 티", 2000);
+orderCoffee("시원한 커피", 3000);
+
+// 레몬 티 제조 완료
+// 시원한 커피 제조 완료
+// 달콤한 커피 제조 완료
+
+function double(num, cb) {
+    setTimeout(() => {
+        const doubleNum = num * 2;
+        cb(doubleNum); // ②
+    }, 1000);
+}
+
+double(10, (res) => {  // ①
+    console.log(res);
+});
+
+console.log("마지막"); // ③
+
+// 마지막
+// 20
+
+const promise = new Promise(function (resolve, reject) {
+    setTimeout(() => {
+        resolve("성공");
+    }, 500);
+});
+
+promise.then(function (res) { ①
+    console.log(res);
+});
+
+// 성공
+
+const promise = new Promise(function (resolve, reject) {
+    setTimeout(() => {
+        reject("실패");
+    }, 500);
+});
+
+promise.then(function (res) {
+    console.log(res);
+});
+
+promise.catch(function (err) { ①
+    console.log(err);
+});
