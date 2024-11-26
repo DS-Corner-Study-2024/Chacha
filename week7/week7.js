@@ -128,6 +128,9 @@ const Controller = () => {
 };
 export default Controller;
 
+//으아집에가고싶다내귤...귤...ㅠㅠㅠ 귤먹고싶어ㅠㅠㅠ
+//걍이렇게눕고싶음ㅇ-<
+
 import "./App.css";
 import { useState } from "react";
 import Controller from "./component/Controller";
