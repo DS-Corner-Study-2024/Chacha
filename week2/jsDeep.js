@@ -243,9 +243,89 @@ console.log(vA&&vB);    // 0
         //console.log(d,h);
     }
 
-    destruct(time);
+//    destruct(time);
 
  
 
 // 스프레드 연산자, rest 매개변수
+
+// 스프레드 연산자
+
+let arrA = [1, 2, 3];
+let arrB = [...arrA, 4,5,6];
+//console.log(arrB); // [1, 2, 3, 4, 5, 6]
+
+let objA = {
+    a: 1,
+    b: 2
+  };
+  
+let objB = {
+    ...objA,
+    c:3,
+    d:4
+};  
+  
+//console.log(objB); // {a: 1, b: 2, c: 3, d: 4}
+
+function func(a, b, c) {
+    console.log(a, b, c);
+  }
+  
+  let arra = [1, 2, 3];
+//func(...arra); // 1 2 3
+
+
+
+// rest 매개변수 - 묶어줌
+
+function func(...rest){
+    console.log(rest);
+}
+
+//func(0,1,2,3,4);
+
+function func(param1,param2,...rest){ //rest 매개변수는 다른 매개변수들 뒤 마지막에
+    console.log(param1,param2,rest);
+}
+
+//func(0,1,2,3,4);
+
+
+
+// 배열 메서드
+
+//push - 배열 마지막에 요소를 추가, 배열의 새로운 길이를 반환
+let alphabet=["a",'b','c'];
+let newLength=alphabet.push("d");
+
+//console.log(alphabet); // ["a", "b", "c", "d"]
+//console.log(`새로운 배열의 길이: ${newLength}`); // 새로운 배열의 길이: 4
+
+//pop - 마지막 요소 제거, 반환
+let removedItem=alphabet.pop();
+//console.log(removedItem); // d 배열이 비었는데 pop>undefined 반환
+
+removedItem=alphabet.shift(); // 첫번째 요소 제거,반환
+console.log(removedItem); // a
+
+newLength=alphabet.unshift("a"); // 첫번째에 삽입, 새 배열 길이 반환
+
+console.log(alphabet); // ["a", "b", "c", "d"]
+console.log(`새로운 배열의 길이: ${newLength}`); // 새로운 배열의 길이: 3
+
+// 속도 pop, push > shift, unshift
+
+let newAlpha = alphabet.slice(0,2); // (부터:직전까지) 자른 새 배열 반환
+console.log(alphabet, newAlpha); // ['a',b','c'] ['a',b']
+
+
+
+
+
+
+
+
+
+
 
