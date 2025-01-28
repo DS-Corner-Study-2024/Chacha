@@ -307,25 +307,54 @@ let removedItem=alphabet.pop();
 //console.log(removedItem); // d 배열이 비었는데 pop>undefined 반환
 
 removedItem=alphabet.shift(); // 첫번째 요소 제거,반환
-console.log(removedItem); // a
+//console.log(removedItem); // a
 
 newLength=alphabet.unshift("a"); // 첫번째에 삽입, 새 배열 길이 반환
 
-console.log(alphabet); // ["a", "b", "c", "d"]
-console.log(`새로운 배열의 길이: ${newLength}`); // 새로운 배열의 길이: 3
+//console.log(alphabet); // ["a", "b", "c", "d"]
+//console.log(`새로운 배열의 길이: ${newLength}`); // 새로운 배열의 길이: 3
 
 // 속도 pop, push > shift, unshift
 
 let newAlpha = alphabet.slice(0,2); // (부터:직전까지) 자른 새 배열 반환
-console.log(alphabet, newAlpha); // ['a',b','c'] ['a',b']
+//console.log(alphabet, newAlpha); // ['a',b','c'] ['a',b']
+//console.log(alphabet.slice(1)); // ['a',b','c'] ['b'.'c']
+//console.log(alphabet.slice(-2)); // ['b','c']
 
+let addAlpha=['d','e'];
+console.log(alphabet.concat(addAlpha)); // 배열 결합
 
+addAlpha={ a:1, b:2 }; // 객체는 1개 요소 취급
+console.log(alphabet.concat(addAlpha));
 
+function print (item, idx) {
+    console.log(`${idx}번째 요소: ${item}`);
+  }
+/*  
+alphabet.forEach(print); // 요소 순회+인수로 받은 콜백함수 실행
 
+alphabet.forEach(
+    (item, index) => console.log(`${index}째 요소:${item}`));
 
+*/
 
+//console.log(alphabet.indexOf('b',1)); // 요소 찾아 인덱스 반환
+//                            요소,찾기시작할 
+// 배열길이오류/인덱스 없음/===로엄격비교f> -1 반환
 
+let arr3 = [{ name: "chacha" }, 1, 2, 3];       // ===로 비교>객체탐색X
+//console.log(arr3.indexOf({ name: "chacha" }));  // -1
+//console.log(arr3.includes(1)); // 존재여부 탐색 t/f 리턴
 
+function determine(item, idx, arr) { // arr3 요소 순차적으로 실행
+    if (item%2===0)
+        return true;
+    else
+        return false;
+  }
+  
+  let index = arr3.findIndex(determine); // 함수 실행 후 true를 받은 첫번째 요소 반환
+  
+  console.log(index); // 2
 
-
-
+  
