@@ -144,4 +144,3 @@ const render = () => {
   counter.innerText = state.counter;
 };
 
-render();
