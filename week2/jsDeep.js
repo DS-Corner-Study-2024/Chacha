@@ -153,10 +153,10 @@ console.log(vA&&vB);    // 0
 // 객체 자료형 - 배열, 함수
 
         // 배열 also 프로퍼티 메서드
-        const arr=[1,2,3];
-    //    console.log(arr.length); // 프로퍼티
-        arr.pop(); arr.push(4); // 메서드
-    //    console.log(arr);
+        const arr0=[1,2,3];
+    //    console.log(arr0.length); // 프로퍼티
+        arr0.pop(); arr0.push(4); // 메서드
+    //    console.log(arr0);
 
         // 함수 also 프로퍼티
         function firstF(){};
@@ -176,9 +176,9 @@ console.log(vA&&vB);    // 0
     //console.log(user===user2);           // false
     // 내용 ==여도 객체 != < 값X참조값O비교
 
-    let arr1=[1,2,3];
+    let arr=[1,2,3];
     let arr2=[1,2,3];
-    //console.log(arr1===arr2); // false
+    //console.log(arr===arr2); // false
 
 
 
@@ -230,7 +230,7 @@ console.log(vA&&vB);    // 0
 // 구조 분해 할당
 
     // 배열 구조 분해 할당
-    let [one, two]=arr1;    // 배열 []
+    let [one, two]=arr;    // 배열 []
     //console.log(one,two); // 배열의 길이!=변수 개수 <> 오류X (undefined 할당)
 
     // 객체
@@ -322,10 +322,10 @@ let newAlpha = alphabet.slice(0,2); // (부터:직전까지) 자른 새 배열 �
 //console.log(alphabet.slice(-2)); // ['b','c']
 
 let addAlpha=['d','e'];
-console.log(alphabet.concat(addAlpha)); // 배열 결합
+//console.log(alphabet.concat(addAlpha)); // 배열 결합
 
 addAlpha={ a:1, b:2 }; // 객체는 1개 요소 취급
-console.log(alphabet.concat(addAlpha));
+//console.log(alphabet.concat(addAlpha));
 
 function print (item, idx) {
     console.log(`${idx}번째 요소: ${item}`);
@@ -346,6 +346,9 @@ let arr3 = [{ name: "chacha" }, 1, 2, 3];       // ===로 비교>객체탐색X
 //console.log(arr3.indexOf({ name: "chacha" }));  // -1
 //console.log(arr3.includes(1)); // 존재여부 탐색 t/f 리턴
 
+
+arr3 = [1, 2, 3];
+
 function determine(item, idx, arr) { // arr3 요소 순차적으로 실행
     if (item%2===0)
         return true;
@@ -355,6 +358,207 @@ function determine(item, idx, arr) { // arr3 요소 순차적으로 실행
   
   let index = arr3.findIndex(determine); // 함수 실행 후 true를 받은 첫번째 요소 반환
   
-  console.log(index); // 2
+//  console.log(index); // 1
+
+//화살표 함수와 삼항 연산자를 이용
+index=arr3.findIndex((item,idx,arr)=> 
+    (item%2!==0) ? true : false
+);
+
+//console.log(index); // 0
+
+arr3.push({name:"chacha"});
+
+
+let indexC = arr3.findIndex((item) => item.name === "chacha");
+console.log(indexC); // 3 인덱스리턴
+
+let nameC=arr3.find((item)=>item.name==="chacha") // 인덱스x요소o 리턴
+//console.log(nameC); // {name:"chacha"}
+// 특정 조건 만족하는 요소 찾기Co
+
+let arr4 = [
+    { name: "이종원", hobby: "축구" },
+    { name: "이정환", hobby: "영화" },
+    { name: "신다민", hobby: "축구" },
+    { name: "김효빈", hobby: "노래" }
+  ];
+  
+  let filteredArr = arr4.filter((item)=>(item.hobby==="축구"));
+  // 콜백 함수를 인수로 받아 만족하는 요소만 새 배열로 리턴
+  
+//  console.log(filteredArr);
+  
+  // [ { name: '이종원', hobby: '축구' }, { name: '신다민', hobby: '축구' } ]
+
+
+let arr5=[1,2,3];
+//console.log(arr5.map((i)=>i*3)); // [3,6,9]
+
+arr5 = [
+    { name: "이종원", hobby: "축구" },
+    { name: "이정환", hobby: "영화" },
+    { name: "신다민", hobby: "축구" },
+    { name: "김효빈", hobby: "노래" }
+  ];
+  
+  let newArr = arr.map((item) => item.name);
+  //각 요소에 콜백 함수 실행 > 리턴값을 새 배열로
+  
+//  console.log(newArr); // [ '이종원', '이정환', '신다민', '김효빈' ]
+
+function compare(a, b) {
+    if (a > b) {
+        return 1;
+    } else if (a < b) {
+        return -1;
+    } else {
+        return 0;
+    }
+  }
+  
+  arr3 = [10, 5, 3];
+  arr3.sort(compare); // 비교 함수에서 -1 리턴>ba정렬 1>ab 0>그대로
+  
+//  console.log(arr3); // [3, 5, 10]
+
+// console.log(arr.join(", ")); // 1,2,4 세퍼레이터로 연결한 문자열 리턴
+
+arr = [1, 2, 3];     // 누적값 현재요소 현재인덱스 배열 4개파라미터
+let result = arr.reduce((acc, item)=>acc+=item, 1); // 누산해서 1개값 리턴
+                        //1 콜백함수          2 초깃값
+
+//console.log(result); // 16
+
+
+
+
+
+
+        // Date 객체
+
+// 일반 객체 - 주로 { key : value; method : function...; }
+let date1=new Date();
+//console.log(date1);
+
+
+// 타임스탬프
+let Jan02_1970 = new Date(24 * 3600 * 1000);
+//console.log(Jan02_1970.getTime()); // 86400000
+
+
+// 날짜 지정 생성
+date1=new Date("2024-01-01/00:00:00"); // 공백 . / -로 문자열 전달달
+//console.log(date1);
+
+
+// DB에서-타임스탬프로 생성 가능
+date1=new Date(Jan02_1970.getTime());
+//console.log(date1); // 1970-01-02T00:00:00.000Z
+
+
+// Date 객체 요소 얻기, 수정, 출력
+console.log(date1.getFullYear(), date1.getMonth());
+//                                     0~11                       
+console.log(date1.getDay(), date1.getHours());
+//                   0~6             UTC+9          
+// 수정 메서드 : set...
+console.log(date1.toString(), 'd', date1.toDateString());
+// Fri Jan 02 1970 09:00:00 GMT+0900 (대한민국 표준시) / Fri Jan 02 1970
+console.log(date1.toLocaleDateString());
+// 1970. 1. 2.
+
+
+// n달 이동시키는 함수
+
+function moveMonth (date, moveMonth){
+    const curTimestamp=date.getTime();
+    const curMonth=date.getMonth();
+    let resDate=new Date(curTimestamp);
+    resDate.setMonth(curMonth+moveMonth);
+    return resDate;
+}
+
+// 배열에서 이번 달 날짜만 필터링
+
+function filterThisMonth(dateArray, pivotDate){
+  const year = pivotDate.getFullYear();
+  const month = pivotDate.getMonth();
+
+  const startDay = new Date(year, month, 1, 0, 0, 0, 0);
+  const endDay = new Date(year, month + 1, 0, 23, 59, 59);
 
   
+  let resArr=dateArray.filter((it)=>
+    it.getTime()>=startDay.getTime()&&
+    it.getTime()<=endDay.getTime()
+    );
+  return resArr;
+}
+
+
+    // 비동기 처리
+
+
+setTimeout(()=>
+  console.log("1번!"), 3000);
+
+console.log("2번!");
+
+// 2번!
+// 1번!
+
+
+function orderCoffee(str,time){
+  setTimeout(() => {
+    console.log(`${str} 제조 완료`)
+  }, time);
+}
+
+orderCoffee("달콤한 커피", 4000);
+orderCoffee("레몬 티", 2000);
+orderCoffee("시원한 커피", 3000);
+
+// 레몬 티 제조 완료 
+// 시원한 커피 제조 완료 
+// 달콤한 커피 제조 완료
+
+// 주의 : setTimeout은 리턴값X 타이머식별번호O 반환함
+
+function double(num, cb) { // 전달받은 콜백 함수를
+  setTimeout(() => {
+    const doubleNum = num * 2;
+    cb(doubleNum); // setTimeout 함수 리턴값(비동기작업 결과값) 실행
+  }, 1000);
+}
+
+const res = double(10,(res)=>console.log(res)); // 콜백 함수 전달
+console.log("마지막");
+
+// 마지막
+// 20
+
+
+// 프로미스 객체
+
+const promise = new Promise( // 생성자에 비동기 '실행 함수'를 인수로 전달
+  function(resolve, reiect){ // 실행함수의 매개변수
+    setTimeout(() => {
+      resolve("성공"); // 상태를 fulfilled로 변경
+    }, 500);
+});
+
+promise.then((res)=>console.log(res)); // resolve 호출되면 then으로 비동기작업 결과값 이용
+
+const promise2 = new Promise(function (resolve, reject) {
+  setTimeout(() => {
+    reject("실패");
+  }, 500);
+});
+
+promise2.catch((err)=>console.log(err));// reject 호출되면 catch 실행
+
+const promise3 = new Promise((resolve, reject) => {
+  resolve("성공!"); 
+  reject("실패!"); // reject&resolve 둘 다 호출하면 나중 것 무시됨
+});
